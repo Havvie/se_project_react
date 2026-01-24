@@ -1,0 +1,22 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 171px 24px 40px;
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    color: #888888;
+}
+
+.footer__text,
+.footer__copyright {
+    margin: 0;
+}
+
+@media screen and (max-width: 480px) {
+    .footer {
+        padding: 20px 16px;
+        font-size: 14px;
+    }
+}
