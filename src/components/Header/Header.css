@@ -3,9 +3,9 @@
     align-items: center;
     padding: 32px 0 28px;
     font-family: "Cabinet Grotesk", sans-serif;
-    font-style: Bold;
-    font-size: 20px;
-    line-height: 24px;
+    font-weight: Bold;
+    font-size: 19px;
+    line-height: 22px;
     letter-spacing: 0%;
 
 }
@@ -20,10 +20,14 @@
 
 .header__add-clothes-btn {
     margin-left: auto;
-    margin: 0 20px 0 auto;
+    margin-right: 20px;
     border: none;
-    font-style: bold;
-
+    background: transparent;
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px 12px;
 }
 
 .header__user-container {
@@ -34,4 +38,29 @@
 
 .header__username {
     margin: 0;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 24px 0 20px;
+        font-size: 16px;
+        line-height: 20px
+    }
+
+    .header__add-clothes-btn {
+        margin: 0 16px 0 auto;
+    }
+}
+
+@media (max-width: 326px) {
+    .header {
+        padding: 20px 16px;
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .header__add-clothes-btn {
+        font-size: 14px;
+        margin-right: 12px;
+    }
 }

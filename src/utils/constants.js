@@ -23,7 +23,7 @@ export const weatherOptions = [
   {
     day: true,
     condition: "thunderstorm",
-    url: new URL("../assets/day/stormy.svg", import.meta.url).href,
+    url: new URL("../assets/day/storm.svg", import.meta.url).href,
   },
   {
     day: true,

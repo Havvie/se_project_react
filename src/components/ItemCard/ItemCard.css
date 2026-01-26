@@ -1,17 +1,19 @@
 .card {
-    width: 323px;
+    max-width: 323px;
+    width: 100%;
     position: relative;
     display: flex;
     justify-content: center;
 }
 
-.card__list {
-    display: flex;
-    flex-wrap: wrap;
+.cards__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 21px;
     margin: 0;
     padding: 0;
     list-style-type: none;
-    gap: 21px;
+    justify-items: center;
 }
 
 .card__name {
@@ -43,9 +45,26 @@
     letter-spacing: 0%;
 }
 
-@media (max-width: 480px) {
-    .card__list {
+@media (max-width: 768px) {
+    .cards__list {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        padding: 0;
+        gap: 6px;
     }
+}
+
+@media (max-width: 326px) {
+    .cards__list {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 6px;
+    }
+
+    .cards__text {
+        font-size: 14px;
+        margin: 0 0 8px 0;
+        padding: 0 0 8px 0;
+    }
+    
+    
 }

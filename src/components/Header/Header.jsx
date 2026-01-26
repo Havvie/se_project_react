@@ -1,9 +1,16 @@
+import React, { useState } from "react";
 import "./Header.css"
 import logo from "../../assets/wtwr.svg";
 import avatar from "../../assets/avatar.svg";
 
 function Header({ handleAddClick, weatherData }) {
-     const currentDate = new Date().toLocaleString('default', { 
+    const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+
+    function toggleMobileMenu() {
+        setIsMobileMenuOpened((prev) => !prev);
+    } 
+    
+    const currentDate = new Date().toLocaleString('default', { 
         month: 'long', day: 'numeric' });
     return (
         <header className="header">
@@ -16,12 +23,6 @@ function Header({ handleAddClick, weatherData }) {
             </div>
         </header>
     );
-
-    const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
-
-    function toggleMobileMenu() {
-        setIsMobileMenuOpened((prev) => !prev);
-    }
 }
 
 export default Header;
