@@ -4,15 +4,24 @@
   left: 0;
   right: 0;
   bottom: 0;
+  margin: auto;
+  max-width: 498px;
   background-color: #0000004d;
+  border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  z-index: 1000;
+  
 }
 
 .modal__opened {
   visibility: visible;
+  max-width: 498px;
+  width: 100%;
+  max-height: 610px;
+  height: 100%;
 }
 
 .modal__label {
@@ -138,31 +147,6 @@
   
 }
 
-.modal__image {
-  max-width: 498px;
-  max-height: 498px;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.modal__content_type_image {
-  padding: 0;
-  max-width: 498px;
-
-}
-
-.modal__footer {
-  display: block;
-  gap: 12px;
-  padding: 0 0 32px 12px;
-  font-family: "Cabinet Grotesk", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: 0%;
-}
 
 @media (max-width: 320px) {
   
@@ -175,7 +159,7 @@
   }
 
   .modal__content {
-    width: 90%;
+    max-width: 90%;
     padding: 10px;
     margin: 14px;
   }

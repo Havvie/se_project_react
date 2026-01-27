@@ -43,6 +43,8 @@
     font-size: 20px;
     line-height: 100%;
     letter-spacing: 0%;
+    margin-bottom: 34px;
+    margin-top: 40px;
 }
 
 @media (max-width: 768px) {
