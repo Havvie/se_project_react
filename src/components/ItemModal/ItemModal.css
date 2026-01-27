@@ -2,7 +2,7 @@
   width: 100%;
   height: auto;
   max-height: 60vh;
-  object-fit: contain;
+  object-fit: cover;
   padding: 0;
   margin: 0;
   border-radius: 16px 16px 0 0;
@@ -29,7 +29,6 @@
   font-weight: 700;
   font-weight: bold;
   font-family: "Cabinet Grotesk", sans-serif;
-  padding: 12px 0 32px 0;
 }
 
 .modal__footer {

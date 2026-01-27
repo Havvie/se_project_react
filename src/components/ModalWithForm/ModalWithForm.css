@@ -5,7 +5,6 @@
   right: 0;
   bottom: 0;
   margin: auto;
-  max-width: 498px;
   background-color: #0000004d;
   border-radius: 16px;
   display: flex;
@@ -18,10 +17,6 @@
 
 .modal__opened {
   visibility: visible;
-  max-width: 498px;
-  width: 100%;
-  max-height: 610px;
-  height: 100%;
 }
 
 .modal__label {
