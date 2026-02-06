@@ -5,7 +5,9 @@ function ModalWithForm({
   title, 
   activeModal, 
   onClose,
-  name
+  name,
+  onSubmit,
+  buttonText,
 }) {
   return (
     <div className={`modal ${activeModal === name ? "modal__opened" : ""}`}> 
@@ -15,21 +17,26 @@ function ModalWithForm({
           type="button" 
           className="modal__close modal__close_type_form" 
           onClick={onClose}
+          aria-label="Close modal"
+        />
+        <form 
+          className="modal__form" 
+          name={name} 
+          noValidate
+          onSubmit={onSubmit}
         >
-        </button>
-      <form 
-        className="modal__form" 
-        name={name} 
-        noValidate>
-        {children}
-          <button 
-            type="submit" 
-            className="modal__submit"
-            aria-label="Add garment"
-          ></button>
-      </form>
+          {children}
+
+            <button 
+              type="submit" 
+              className="modal__submit"
+              aria-label={buttonText || "Submit"}
+            >
+
+            </button>
+        </form>
+        </div>
       </div>
-    </div>
   );  
 }
 
