@@ -24,9 +24,13 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
                         key={item._id} 
                         item={item} 
                         onCardClick={handleCardClick} 
+                        
                     />
+                    
                     );
+                    console.log("clothingItems in Main:", clothingItems);
                 })}
+                
             </ul>
         </section>
     </main>

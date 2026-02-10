@@ -27,4 +27,4 @@ WTWR (What to Wear?) is a responsive React application that helps users decie wh
 - Persist user-added clothing items
 
 ## Live Demo
-(Coming soon)
+[View the Sprint 11 pitch video](https://www.loom.com/share/35638cb3a2b246f7a04e1abfc67624e0)

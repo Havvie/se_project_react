@@ -20,18 +20,19 @@ function Header({ handleAddClick, weatherData }) {
   return (
     <header className="header">
       <div className="header__container">
-        {/* TODO - link to home page */}
-      <img 
-        src={logo} 
-        alt="WTWR Logo" 
-        className="header__logo" 
-      />
-      <p className="header__date-and-location">
-        {currentDate}, {weatherData.city}
-      </p>
-      </div>
-      <div className="header__controls">
-        <ToggleSwitch />
+      <NavLink to="/" className="header__logo-link">
+        <img 
+          src={logo} 
+          alt="WTWR Logo" 
+          className="header__logo" 
+        />
+      </NavLink>
+        <p className="header__date-and-location">
+          {currentDate}, {weatherData.city}
+        </p>
+        </div>
+        <div className="header__controls">
+      <ToggleSwitch />
 
         <button
             type="button"
@@ -41,7 +42,7 @@ function Header({ handleAddClick, weatherData }) {
             + Add Clothes
         </button>
 
-        <NavLink to="/profile" className="header__nav-link">
+      <NavLink to="/profile" className="header__nav-link">
         <div className="header__username">Terrence Tegegne</div>
         <img 
           src={avatar} 
@@ -54,7 +55,7 @@ function Header({ handleAddClick, weatherData }) {
           <button
             type="button"
             className="header__mobile-close"
-            onClick={handleMobileMenuClick}
+            onClick={toggleMobileMenu}
             aria-label="Close menu"
           />
         )}

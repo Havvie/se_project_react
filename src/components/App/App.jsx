@@ -8,11 +8,12 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
+import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import { getItems, addItem } from "../../utils/api";
+import { getItems, addItem, removeItem } from "../../utils/api";
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [itemToDelete, setItemToDelete] = useState(null);
+  
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -42,24 +45,47 @@ function App() {
     setSelectedCard(card);
   };
 
+  const handleCloseModal = () => {
+    setActiveModal("");
+    setItemToDelete(null);
+  };
 
-  const onAddItem = (inputValues) => {
+  const onAddItem = (inputValues, resetForm) => {
       const newCardData = {
         name: inputValues.name,
         imageUrl: inputValues.imageUrl,
         weather: inputValues.weatherType,
     };
     
-    addItem(newCardData)
-      .then((data) => {
-        setClothingItems([data, ...clothingItems]);
+    return addItem(newCardData).then((data) => {
+        setClothingItems((prev) => [data, ...prev]);
+        if (typeof resetForm === "function") resetForm();
         handleCloseModal();
+        return data;
       })
-      .catch(console.error);
   };
 
-   const handleCloseModal = () => {
-    setActiveModal("");
+  const handleDeleteItem = (id) => {
+     return removeItem(id).then(() => {
+        setClothingItems((prev) => prev.filter((item) => item._id !== id));
+        handleCloseModal();
+      })
+  };
+
+  const openDeleteConfirmation = (card) => {
+    setItemToDelete(card);
+    setActiveModal("confirm-delete");
+  };
+
+  const handleConfirmDelete = () => {
+    if (!itemToDelete) return Promise.resolve();
+
+    return removeItem(itemToDelete._id).then(() => {
+        setClothingItems((prev) =>
+        prev.filter((item) => item._id !== itemToDelete._id)
+      );
+      handleCloseModal();
+      });
   };
 
   useEffect(() => {
@@ -72,21 +98,9 @@ function App() {
       .catch(console.error);
 
       getItems()
-      // TODO make new items appear first
-      // HINT look how to reverse an array in JS
         .then((items) => setClothingItems(items))
         .catch(console.error);
   }, []);
-
-  // TODO
-  // - Add a delete button to the preview modal
-  // - Declare a handler in App.jsx (deleteItemHandler)
-  // - Pass handler to preview modal
-  // - Inside preview modal, pass the ID as an argumen to the handler (use the handler pattern found in ItemCard)
-  // - call removeItem function ot pass it the ID
-  // - in the .then() remove the item from the array
-  // - how? filter
-  // const filteredArr = arr.filter((item) => { return item._id != id;})
 
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -95,6 +109,7 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          
           <Routes>
             <Route 
               path="/" 
@@ -111,7 +126,8 @@ function App() {
               element={
                 <Profile
                   onCardClick={handleCardClick}
-                  clothingItems={clothingItems} 
+                  clothingItems={clothingItems}
+                  onAddClick={handleAddClick} 
               />
             } 
           />
@@ -129,6 +145,12 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={handleCloseModal}
+          onDeleteItem={openDeleteConfirmation}
+        />
+        <DeleteConfirmationModal
+          activeModal={activeModal}
+          onClose={handleCloseModal}
+          onConfirm={handleConfirmDelete}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>

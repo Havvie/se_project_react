@@ -8,7 +8,6 @@ function ItemCard({ item, onCardClick }) {
 
     return (
         <li className="card">
-            {/* Make image appear again in preview modal */}
             <h2 className="card__name">{item.name}</h2>
             <img
                 onClick={handleCardClick}
@@ -16,10 +15,6 @@ function ItemCard({ item, onCardClick }) {
                 src={item.imageUrl} 
                 alt={item.name}
             />
-            {/* <div className="card__title-and-like">
-                <p className="card__title">{item.name}</p>
-                <button type="button" className="card__like-button" />
-            </div> */}
         </li>
     );
 }

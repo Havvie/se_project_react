@@ -2,3 +2,10 @@
     display: flex;
     justify-content: space-between;
 }
+
+@media (max-width: 768px) {
+    .profile {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

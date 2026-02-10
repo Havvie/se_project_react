@@ -16,8 +16,8 @@
 
 .toggle-switch__circle {
     background-color: black;
-    width: 28px;
-    height: 25px;
+    width: 29px;
+    height: 28px;
     position: absolute;
     border-radius: 20px;
     left: 0;
@@ -40,5 +40,5 @@
 }
 
 .toggle-switch__checkbox:checked ~ .toggle-switch__circle {
-    left: 25px;
+    left: 29px;
 }

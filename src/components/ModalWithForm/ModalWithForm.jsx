@@ -8,6 +8,7 @@ function ModalWithForm({
   name,
   onSubmit,
   buttonText,
+  isSubmitDisabled,
 }) {
   return (
     <div className={`modal ${activeModal === name ? "modal__opened" : ""}`}> 
@@ -31,10 +32,9 @@ function ModalWithForm({
               type="submit" 
               className="modal__submit"
               aria-label={buttonText || "Submit"}
-            >
-
-            </button>
-        </form>
+              button={isSubmitDisabled}
+            />
+         </form>
         </div>
       </div>
   );  
