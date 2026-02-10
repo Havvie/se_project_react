@@ -32,7 +32,7 @@ function ModalWithForm({
               type="submit" 
               className="modal__submit"
               aria-label={buttonText || "Submit"}
-              button={isSubmitDisabled}
+              disabled={isSubmitDisabled}
             />
          </form>
         </div>

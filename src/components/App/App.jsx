@@ -65,13 +65,6 @@ function App() {
       })
   };
 
-  const handleDeleteItem = (id) => {
-     return removeItem(id).then(() => {
-        setClothingItems((prev) => prev.filter((item) => item._id !== id));
-        handleCloseModal();
-      })
-  };
-
   const openDeleteConfirmation = (card) => {
     setItemToDelete(card);
     setActiveModal("confirm-delete");
@@ -85,6 +78,9 @@ function App() {
         prev.filter((item) => item._id !== itemToDelete._id)
       );
       handleCloseModal();
+      })
+      .catch((error) => {
+        console.error("Failed to delete item:", error);
       });
   };
 

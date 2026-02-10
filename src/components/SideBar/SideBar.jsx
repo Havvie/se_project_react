@@ -13,7 +13,7 @@ export default function SideBar() {
                     <img
                         className="sidebar__avatar"
                         src={avatar || avatarDefault}
-                        alt="user avatar"
+                        alt={username || 'User avatar'}
                     />
                 ) :(
                     <span className="sidebar__avatar sidebar__avatar_none">

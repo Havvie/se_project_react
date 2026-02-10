@@ -11,7 +11,7 @@ function ItemModal({ activeModal, card, onClose, onDeleteItem }) {
             />
             <img 
               src={card.imageUrl} 
-              alt="{card.name}" 
+              alt={card.name || 'Clothing item'}
               className="modal__image" 
             />
             <div className="modal__footer">

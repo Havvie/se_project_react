@@ -45,14 +45,14 @@ const AddItemModal = ({ activeModal, onAddItem, onClose }) => {
   const errors = useMemo(() => {
     const next = { name: "", imageUrl: "", weatherType: "" };
 
-    const n = values.name.trim();
-    if (!n) next.name = "Name is required.";
-    else if (n.length < NAME_MIN) next.name = `Name must be at least ${NAME_MIN} characters.`;
-    else if (n.length > NAME_MAX) next.name = `Name must be ${NAME_MAX} characters or less.`;
+    const trimmedName = values.name.trim();
+    if (!trimmedName) next.name = "Name is required.";
+    else if (trimmedName.length < NAME_MIN) next.name = `Name must be at least ${NAME_MIN} characters.`;
+    else if (trimmedName.length > NAME_MAX) next.name = `Name must be ${NAME_MAX} characters or less.`;
 
-    const u = values.imageUrl.trim();
-    if (!u) next.imageUrl = "Image URL is required.";
-    else if (!isValidURL(u)) next.imageUrl = "Enter a valid URL starting with http:// or https://";
+    const trimmedUrl = values.imageUrl.trim();
+    if (!trimmedUrl) next.imageUrl = "Image URL is required.";
+    else if (!isValidURL(trimmedUrl)) next.imageUrl = "Enter a valid URL starting with http:// or https://";
 
     if (!values.weatherType) next.weatherType = "Please select a weather type.";
 
