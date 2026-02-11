@@ -3,7 +3,6 @@ import "./Header.css";
 import logo from "../../assets/wtwr.svg";
 import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import avatarDefault from "../../assets/avatar.svg";
 import { NavLink } from "react-router-dom";
 
 function Header({ handleAddClick, weatherData }) {

@@ -2,18 +2,10 @@ import { useEffect, useMemo, useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { isValidURL } from "../../utils/validation";
 
 const NAME_MIN = 2;
 const NAME_MAX = 30;
-
-function isValidURL(value) {
-  try {
-    const url = new URL(value);
-    return url.protocol === "http:" || url.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
 
 const AddItemModal = ({ activeModal, onAddItem, onClose }) => {
   const defaultValues = { name: "", imageUrl: "", weatherType: "" };

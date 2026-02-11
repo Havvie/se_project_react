@@ -1,13 +1,9 @@
+import { handleServerResponse } from "./api";
+
 export const getWeather =({ latitude, longitude, APIkey }) => {
     return fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-    ).then((res) => {
-        if (res.ok) {
-            return res.json()
-        } else {
-            return Promise.reject(`Error: ${res.status}`)
-        }
-    });
+    ).then(handleServerResponse);
 };
 
 export const filterWeatherData = (data) => {
@@ -26,8 +22,6 @@ export const filterWeatherData = (data) => {
 const isDaytime = ({ sunrise, sunset }) => {
     const now = Date.now();
     return sunrise * 1000 < now && now < sunset * 1000;
-    // const currentHour = now.getHours();
-    // return currentHour >= (new Date(sunrise * 1000).getHours()) && currentHour < (new Date(sunset * 1000).getHours());
 };
 
 const getWeatherType =(weather) => {
