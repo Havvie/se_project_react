@@ -8,12 +8,16 @@
     line-height: 22px;
     letter-spacing: 0%;
     justify-content: center;
-
 }
 
 .header__container {
     display: flex;
     align-items: center;
+}
+
+.header__auth-button {
+    border: none;
+    font-size: 20px;
 }
 
 .header__logo {
@@ -29,6 +33,7 @@
     margin-left: auto;
     display: flex;
     align-items: center;
+    gap: 20px;
 }
 
 .header__add-clothes-btn {

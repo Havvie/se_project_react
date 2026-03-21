@@ -10,30 +10,45 @@ function ModalWithForm({
   buttonText,
   isSubmitDisabled,
 }) {
+
+  const isOpen = activeModal === name;
+
+  const handleOverlayClose = (evt) => {
+    if (evt.target === evt.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className={`modal ${activeModal === name ? "modal__opened" : ""}`}> 
-      <div className="modal__content">
-        <h2 className="modal__title">{title}</h2>
+    <div 
+      className={`modal ${isOpen ? "modal__opened" : ""}`}
+      onClick={handleOverlayClose}
+    > 
+      <div 
+        className="modal__content"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button 
           type="button" 
           className="modal__close modal__close_type_form" 
           onClick={onClose}
           aria-label="Close modal"
         />
+        <h2 className="modal__title">{title}</h2>
         <form 
           className="modal__form" 
-          name={name} 
-          noValidate
           onSubmit={onSubmit}
         >
           {children}
 
-            <button 
+          <button 
               type="submit" 
               className="modal__submit"
               aria-label={buttonText || "Submit"}
               disabled={isSubmitDisabled}
-            />
+            >
+              {buttonText || "Submit"}
+          </button>
          </form>
         </div>
       </div>

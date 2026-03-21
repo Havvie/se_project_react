@@ -1,8 +1,25 @@
+import { useContext } from "react";
 import './ItemModal.css';
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ activeModal, card, onClose, onDeleteItem }) {
+  const currentUser = useContext(CurrentUserContext);
+  const handleOverlayClose = (evt) => {
+    if (evt.target === evt.currentTarget) {
+      onClose();
+    }
+  };
+
+  const ownerId =
+    typeof card?.owner === "string" ? card.owner : card?.owner?._id;
+  
+  const isOwn = currentUser && ownerId === currentUser._id;
+
   return (
-    <div className={`modal ${activeModal === "preview" ? "modal__opened" : ""}`}> 
+    <div 
+      className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}
+      onClick={handleOverlayClose}
+    > 
         <div className="modal__content modal__content_type_image">
             <button 
               type="button" 
@@ -17,6 +34,8 @@ function ItemModal({ activeModal, card, onClose, onDeleteItem }) {
             <div className="modal__footer">
               <div className="modal__footer-row">
                 <h2 className="modal__caption">{card.name}</h2>
+
+                {isOwn && (
                   <button
                       type="button"
                       className="modal__delete"
@@ -24,7 +43,9 @@ function ItemModal({ activeModal, card, onClose, onDeleteItem }) {
                   >  
                     Delete item
                   </button>
+                )}
                 </div>
+
                 <p className="modal__weather">Weather: {card.weather}</p>
             </div>
         </div>
