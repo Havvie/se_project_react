@@ -82,6 +82,7 @@ function App() {
       .then((user) => {
         setCurrentUser(user);
         setIsLoggedIn(true);
+        navigate("/");
         handleCloseModal();
       })
       .catch(console.error);
@@ -97,6 +98,7 @@ function App() {
       .then((user) => {
         setCurrentUser(user);
         setIsLoggedIn(true);
+        navigate("/");
         handleCloseModal();
       })
       .catch(console.error);
