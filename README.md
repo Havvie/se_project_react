@@ -1,38 +1,49 @@
 # WTWR (What to Wear?)
 
+## Backend Repository
+[se_project_express backend repo](https://github.com/havvie/se_project_express)
+
 ## About
 
-WTWR (What to Wear?) is a responsive React application that helps users decie what to wear based on real-time weather conditions. The app fetches current weather data using the OpenWeatheer API and recommends clothing items that match the temperature and the time of day.
+WTWR (What to Wear?) is a responsive full-stack application that helps users decide what to wear based on real-time weather conditions. The frontend is built with React, and it connects to a backend API created in Project 13 to support user authentication, profile management, and clothing item interactions.
+
+The app fetches current weather data using the OpenWeather API and displays clothing items that match the current temperature. Authorized users can register, log in, edit their profile, add and delete clothing items, and like or unlike items.
 
 ## Functionality
 
 - Fetches real-time weather data using the OpenWeather API
-- Displays current temperature and city
-- Updates weather visuals based on conditions and time of day
+- Displays the current temperature and city
 - Filters clothing recommendations by weather type (hot, warm, cold)
 - Opens an image preview modal when a clothing item is clicked
-- Opens and closes modals using shared application state
+- Supports user registration and login with JWT authentication
+- Persists authorization using localStorage token checks
+- Protects the profile route for authorized users only
+- Allows authorized users to edit profile information
+- Allows authorized users to add clothing items
+- Allows item owners to delete their own clothing items
+- Allows authorized users to like and unlike clothing items
+- Displays the current user’s profile information dynamically
+- Shows only the current user’s items on the profile page
+- Supports closing modals by close button, overlay click, and Escape key
 - Responsive layout for desktop and mobile screens
 
 ## Technologies Used
 
-- React (functional components & hooks)
+- React
+- React Router
 - JavaScript (ES6+)
 - CSS (BEM methodology)
-- OpenWeather API
 - Vite
+- OpenWeather API
+- Express.js backend API
+- MongoDB / Mongoose
+- JWT authentication
 - Git & GitHub
 
 ## Future Improvements
 
-- Add support for switching between Fahrenheit and Celsius
-- Allow users to add and remove clothing items dynamically
-- Implement user authentication and favorites
-- Persist user-added clothing items
-
-## Live Demo
-
-[View the Sprint 11 pitch video](https://www.loom.com/share/35638cb3a2b246f7a04e1abfc67624e0)
-
-## Backend Repository
-[se_project_express](https://havvie.github.io/se_project_express/)
+- Improve form validation and user-facing error messages
+- Add loading states for async actions
+- Add success notifications for profile updates and item actions
+- Improve mobile responsiveness and UI polish
+- Add additional account settings and profile customization

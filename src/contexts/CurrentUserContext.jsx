@@ -1,5 +1,6 @@
 import { createContext } from "react";
+import React from "react";
 
-const CurrentUserContext = createContext(null);
+const CurrentUserContext = React.createContext();
 
 export default CurrentUserContext;

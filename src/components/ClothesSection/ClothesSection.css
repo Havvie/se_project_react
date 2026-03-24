@@ -1,32 +1,29 @@
 .clothes-section {
-    flex-grow: 1;
-    min-width: 0;
-
+  flex-grow: 1;
+  min-width: 0;
 }
 
 .clothes-section__row {
-    display: flex;
-    margin-bottom: 17px;
-    gap: 20px;
-    font-family: "Cabinet Grotesk", sans-serif;
-    font-size: 20px;
-    font-weight: bold;
+  display: flex;
+  margin-bottom: 17px;
+  gap: 20px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .clothes-section__btn {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-   
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 .clothes-section__items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
-    grid-gap: 20px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    align-items: start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+  grid-gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  align-items: start;
 }
-

@@ -1,35 +1,35 @@
 .main {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .main__clothes {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .main__items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 283px);
-    grid-template-rows: repeat(auto-fit, 283px);
-    grid-gap: 20px;
-    padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 283px);
+  grid-template-rows: repeat(auto-fit, 283px);
+  grid-gap: 20px;
+  padding: 0;
 }
 
 .main__description {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 20px
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 @media screen and (min-width: 768px) {
-    .main__items {
-        grid-template-columns: repeat(auto-fit, 325px);
-        grid-template-rows: repeat(auto-fit, 328px);
-    }
+  .main__items {
+    grid-template-columns: repeat(auto-fit, 325px);
+    grid-template-rows: repeat(auto-fit, 328px);
+  }
 }
 
 @media screen and (min-width: 768px) {
-    .main__description {
-        margin-bottom: 34px;
-    }
+  .main__description {
+    margin-bottom: 34px;
+  }
 }

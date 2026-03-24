@@ -1,55 +1,54 @@
 .modal__content {
-    font-size: 20px;
-    font-weight: 700;
-    font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk", sans-serif;
 }
 
 .modal__content_text {
-    margin-top: 60px;
+  margin-top: 60px;
 }
 
 .modal__content_type_confirm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    font-size: 20px;
-    line-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+  line-height: 0;
 }
 
-
 .modal__title {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .modal__subtitle {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 .modal__confirm-action {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal__confirm-delete {
-    color: #FF4D00;
-    padding-bottom: 24px;
+  color: #ff4d00;
+  padding-bottom: 24px;
 }
 
 .modal__confirm-delete:hover {
-    color: #000;
+  color: #000;
 }
 
 .modal__confirm-delete,
 .modal__confirm-cancel {
-    background: none;
-    border: none;
-    cursor: pointer;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .modal__confirm-cancel {
-    margin: auto;
+  margin: auto;
 }
 
 .modal__confirm-cancel:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

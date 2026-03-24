@@ -19,7 +19,7 @@ export const getUserCoordinates = () => {
       },
       (error) => {
         reject(new Error(`Geolocation error: ${error.message}`));
-      },
+      }
     );
   });
 };

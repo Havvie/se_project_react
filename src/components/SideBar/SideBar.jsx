@@ -6,7 +6,7 @@ export default function SideBar({ onEditProfile, onSignOut }) {
   const currentUser = useContext(CurrentUserContext);
 
   const username = currentUser?.name || "User";
-  const avatar = currentUser.avatar || "";
+  const avatar = currentUser?.avatar || "";
   const firstLetter = username.charAt(0).toUpperCase();
 
   return (

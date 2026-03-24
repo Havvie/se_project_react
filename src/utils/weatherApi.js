@@ -1,35 +1,36 @@
 import { handleServerResponse } from "./api";
 
-export const getWeather =({ latitude, longitude, APIkey }) => {
-    return fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-    ).then(handleServerResponse);
+export const getWeather = ({ latitude, longitude, apiKey }) => {
+  return fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`
+  ).then(handleServerResponse);
 };
 
 export const filterWeatherData = (data) => {
-    const result = {};
-    result.city = data.name;
-    result.temp = { 
-        F: Math.round(data.main.temp), 
-        C: Math.round(((data.main.temp - 32) * 5) / 9) 
-    };
-    result.type = getWeatherType(result.temp.F);
-    result.condition = data.weather[0].main.toLowerCase();
-    result.isDayTime = isDaytime({ sunrise: data.sys.sunrise, sunset: data.sys.sunset });
-    return result;
+  const tempF = Math.round(data.main.temp);
+  
+  return {
+    city: data.name,
+    temp: {
+      F: tempF,
+      C: Math.round(((tempF - 32) * 5) / 9),
+    },
+    type: getWeatherType(tempF),
+    condition: data.weather[0].main.toLowerCase(),
+    isDayTime: isDaytime({
+      sunrise: data.sys.sunrise,
+      sunset: data.sys.sunset,
+    }),
+  };
 };
 
 const isDaytime = ({ sunrise, sunset }) => {
-    const now = Date.now();
-    return sunrise * 1000 < now && now < sunset * 1000;
+  const now = Date.now();
+  return sunrise * 1000 < now && now < sunset * 1000;
 };
 
-const getWeatherType =(weather) => {
-if (weather >= 86) {
-   return 'hot';
- } else if (weather >= 66 && weather < 86) {
-   return 'warm';
- } else {
-   return 'cold';
- }
-}
+const getWeatherType = (tempF) => {
+  if (tempF >= 86) return "hot";
+  if (tempF >= 66) return "warm";
+  return "cold";
+};

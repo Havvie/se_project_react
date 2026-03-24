@@ -50,13 +50,12 @@
 }
 
 .modal__delete {
-  color: #FF4D00;
+  color: #ff4d00;
   border: none;
   background-color: transparent;
   cursor: pointer;
   font-size: 20px;
 }
-
 
 @media (max-width: 320px) {
   .modal__footer {

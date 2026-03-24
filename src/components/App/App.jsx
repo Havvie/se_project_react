@@ -15,19 +15,19 @@ import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { coordinates, APIkey } from "../../utils/constants";
+import { coordinates, apiKey } from "../../utils/constants";
 import { getUserCoordinates } from "../../utils/geolocation";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 import * as auth from "../../utils/auth";
-import { 
-  getItems, 
-  addItem, 
+import {
+  getItems,
+  addItem,
   removeItem,
   updateUserProfile,
   addCardLike,
-  removeCardLike, 
+  removeCardLike,
 } from "../../utils/api";
 import { setToken, getToken, removeToken } from "../../utils/token";
 
@@ -50,8 +50,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCheckingToken, setIsCheckingToken] = useState(true);
 
+  const navigate = useNavigate();
+
   const handleToggleSwitchChange = () => {
-    setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
+    setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
   };
 
   const handleOpenAddModal = () => setActiveModal("add-garment");
@@ -129,12 +131,12 @@ function App() {
 
     return addItem(newCardData, token)
       .then((data) => {
-      setClothingItems((prev) => [data, ...prev]);
+        setClothingItems((prev) => [data, ...prev]);
         if (typeof resetForm === "function") resetForm();
         handleCloseModal();
         return data;
-    })
-    .catch(console.error);
+      })
+      .catch(console.error);
   };
 
   const openDeleteConfirmation = (card) => {
@@ -150,15 +152,18 @@ function App() {
     return removeItem(itemToDelete._id, token)
       .then(() => {
         setClothingItems((prev) =>
-          prev.filter((item) => item._id !== itemToDelete._id),
+          prev.filter((item) => item._id !== itemToDelete._id)
         );
         handleCloseModal();
       })
       .catch((error) => {
-        console.error("Failed to delete item:", error);
+        console.error(error);
+        removeToken();
+        setCurrentUser(null);
+        setIsLoggedIn(false);
+        navigate("/");
       });
   };
-
   const handleCardLike = ({ id, isLiked }) => {
     const token = getToken();
 
@@ -166,16 +171,14 @@ function App() {
       ? addCardLike(id, token)
       : removeCardLike(id, token);
 
-      request
-        .then((updatedCard) => {
-          setClothingItems((cards) =>
+    request
+      .then((updatedCard) => {
+        setClothingItems((cards) =>
           cards.map((item) => (item._id === id ? updatedCard : item))
         );
       })
       .catch(console.error);
-  }
-
-  const navigate = useNavigate();
+  };
 
   useEffect(() => {
     const fetchWeatherForUserLocation = () => {
@@ -184,7 +187,7 @@ function App() {
           return getWeather({
             latitude: userCoordinates.latitude,
             longitude: userCoordinates.longitude,
-            APIkey,
+            apiKey,
           });
         })
         .catch(() => {
@@ -192,7 +195,7 @@ function App() {
           return getWeather({
             latitude: coordinates.latitude,
             longitude: coordinates.longitude,
-            APIkey,
+            apiKey,
           });
         })
         .then((data) => setWeatherData(filterWeatherData(data)))
@@ -220,7 +223,12 @@ function App() {
         setCurrentUser(user);
         setIsLoggedIn(true);
       })
-      .catch(console.error)
+      .catch((err) => {
+        console.error(err);
+        removeToken();
+        setCurrentUser(null);
+        setIsLoggedIn(false);
+      })
       .finally(() => {
         setIsCheckingToken(false);
       });
@@ -249,8 +257,8 @@ function App() {
       >
         <div className="page">
           <div className="page__content">
-            <Header 
-              handleAddClick={handleOpenAddModal} 
+            <Header
+              handleAddClick={handleOpenAddModal}
               handleLoginClick={handleOpenLoginModal}
               handleRegisterClick={handleOpenRegisterModal}
               weatherData={weatherData}
@@ -304,6 +312,7 @@ function App() {
             card={selectedCard}
             onClose={handleCloseModal}
             onDeleteItem={openDeleteConfirmation}
+            isLoggedIn={isLoggedIn}
           />
           <DeleteConfirmationModal
             activeModal={activeModal}

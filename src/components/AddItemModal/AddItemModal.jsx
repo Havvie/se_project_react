@@ -39,12 +39,15 @@ const AddItemModal = ({ activeModal, onAddItem, onClose }) => {
 
     const trimmedName = values.name.trim();
     if (!trimmedName) next.name = "Name is required.";
-    else if (trimmedName.length < NAME_MIN) next.name = `Name must be at least ${NAME_MIN} characters.`;
-    else if (trimmedName.length > NAME_MAX) next.name = `Name must be ${NAME_MAX} characters or less.`;
+    else if (trimmedName.length < NAME_MIN)
+      next.name = `Name must be at least ${NAME_MIN} characters.`;
+    else if (trimmedName.length > NAME_MAX)
+      next.name = `Name must be ${NAME_MAX} characters or less.`;
 
     const trimmedUrl = values.imageUrl.trim();
     if (!trimmedUrl) next.imageUrl = "Image URL is required.";
-    else if (!isValidURL(trimmedUrl)) next.imageUrl = "Enter a valid URL starting with http:// or https://";
+    else if (!isValidURL(trimmedUrl))
+      next.imageUrl = "Enter a valid URL starting with http:// or https://";
 
     if (!values.weatherType) next.weatherType = "Please select a weather type.";
 
@@ -66,10 +69,14 @@ const AddItemModal = ({ activeModal, onAddItem, onClose }) => {
     (touched.name || hasSubmitted) && errors.name ? errors.name : "";
 
   const showUrlError =
-    (touched.imageUrl || hasSubmitted) && errors.imageUrl ? errors.imageUrl : "";
+    (touched.imageUrl || hasSubmitted) && errors.imageUrl
+      ? errors.imageUrl
+      : "";
 
   const showWeatherError =
-    (touched.weatherType || hasSubmitted) && errors.weatherType ? errors.weatherType : "";
+    (touched.weatherType || hasSubmitted) && errors.weatherType
+      ? errors.weatherType
+      : "";
 
   const handleBlur = (e) => {
     const { name } = e.target;

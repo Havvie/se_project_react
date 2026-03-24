@@ -9,7 +9,7 @@ function LoginModal({ activeModal, onClose, onLogin }) {
 
   const [errors, setErrors] = useState({
     email: "",
-    password:"",
+    password: "",
     general: "",
   });
 
@@ -22,9 +22,9 @@ function LoginModal({ activeModal, onClose, onLogin }) {
     }));
 
     setErrors((prev) => ({
-        ...prev,
-        [name]: validationMessage,
-        general: "",
+      ...prev,
+      [name]: validationMessage,
+      general: "",
     }));
   };
 
@@ -78,7 +78,7 @@ function LoginModal({ activeModal, onClose, onLogin }) {
 
       {errors.general && (
         <p className="modal__error modal__error_type_general">
-            {errors.general}
+          {errors.general}
         </p>
       )}
     </ModalWithForm>
