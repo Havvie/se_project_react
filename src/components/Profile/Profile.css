@@ -1,6 +1,7 @@
 .profile {
   display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
+  gap: 116px
 }
 
 @media (max-width: 768px) {

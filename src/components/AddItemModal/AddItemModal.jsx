@@ -104,6 +104,7 @@ const AddItemModal = ({ activeModal, onAddItem, onClose }) => {
       onSubmit={handleSubmit}
       buttonText="Add garment"
       isSubmitDisabled={!isFormValid}
+      buttonVariant="item"
     >
       <label htmlFor="name" className="modal__label">
         Name

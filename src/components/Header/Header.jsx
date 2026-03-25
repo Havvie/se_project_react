@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/wtwr.svg";
@@ -23,12 +23,19 @@ function Header({
   const userAvatar = currentUser?.avatar || "";
   const firstLetter = userName ? userName.charAt(0).toUpperCase() : "";
 
+  const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    setImageError(false);
+  }, [userAvatar]);
+
   return (
     <header className="header">
       <div className="header__container">
         <NavLink to="/" className="header__logo-link">
           <img src={logo} alt="WTWR Logo" className="header__logo" />
         </NavLink>
+
         <p className="header__date-and-location">
           {currentDate}, {weatherData.city}
         </p>
@@ -50,14 +57,15 @@ function Header({
             <NavLink to="/profile" className="header__nav-link">
               <div className="header__username">{userName}</div>
 
-              {userAvatar ? (
+              {userAvatar && !imageError ? (
                 <img
                   src={userAvatar}
                   alt={userName}
                   className="header__avatar"
+                  onError={() => setImageError(true)}
                 />
               ) : (
-                <div className="header__avatar header__avatar_placeholder">
+                <div className="header__avatar header__avatar_none">
                   {firstLetter}
                 </div>
               )}

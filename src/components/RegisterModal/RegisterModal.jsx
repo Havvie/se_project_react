@@ -1,7 +1,12 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ activeModal, onClose, onRegister }) {
+function RegisterModal({ 
+  activeModal, 
+  onClose, 
+  onRegister,
+  onSwitchToLogin, 
+}) {
   const [formData, setFormData] = useState({
     name: "",
     avatar: "",
@@ -76,6 +81,9 @@ function RegisterModal({ activeModal, onClose, onRegister }) {
       onClose={onClose}
       onSubmit={handleSubmit}
       buttonText="Sign up"
+      secondaryButtonText="or Log in"
+      onSecondaryClick={onSwitchToLogin}
+      buttonVariant="signup"
     >
       <label className="modal__label">
         Name

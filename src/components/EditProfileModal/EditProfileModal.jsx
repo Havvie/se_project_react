@@ -19,8 +19,11 @@ function EditProfileModal({ activeModal, onClose, onUpdateProfile }) {
     }
   }, [activeModal, currentUser]);
 
+  const isFormValid = formData.name.trim() && formData.avatar.trim();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -29,6 +32,9 @@ function EditProfileModal({ activeModal, onClose, onUpdateProfile }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!isFormValid) return;
+
     onUpdateProfile(formData);
   };
 
@@ -40,6 +46,8 @@ function EditProfileModal({ activeModal, onClose, onUpdateProfile }) {
       onClose={onClose}
       onSubmit={handleSubmit}
       buttonText="Save changes"
+      buttonVariant="save"
+      isSubmitDisabled={!isFormValid}
     >
       <label className="modal__label">
         Name
@@ -50,6 +58,7 @@ function EditProfileModal({ activeModal, onClose, onUpdateProfile }) {
           value={formData.name}
           onChange={handleChange}
           required
+          minLength="2"
         />
       </label>
 

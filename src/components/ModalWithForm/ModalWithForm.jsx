@@ -9,6 +9,9 @@ function ModalWithForm({
   onSubmit,
   buttonText,
   isSubmitDisabled,
+  secondaryButtonText,
+  onSecondaryClick,
+  buttonVariant = "item",
 }) {
   const isOpen = activeModal === name;
 
@@ -17,6 +20,9 @@ function ModalWithForm({
       onClose();
     }
   };
+
+  const submitButtonClassName = `modal__submit modal__submit_type_${buttonVariant}`;
+    
 
   return (
     <div
@@ -30,18 +36,33 @@ function ModalWithForm({
           onClick={onClose}
           aria-label="Close modal"
         />
+
         <h2 className="modal__title">{title}</h2>
+
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
 
-          <button
-            type="submit"
-            className="modal__submit"
-            aria-label={buttonText || "Submit"}
-            disabled={isSubmitDisabled}
-          >
-            {buttonText || "Submit"}
-          </button>
+          <div className="modal__actions">
+            <button
+              type="submit"
+              className={submitButtonClassName}
+              aria-label={buttonText || "Submit"}
+              disabled={isSubmitDisabled}
+            >
+              {buttonText || "Submit"}
+            </button>
+
+            {secondaryButtonText && onSecondaryClick && (
+              <button
+                type="button"
+                className="modal__secondary-button"
+                onClick={onSecondaryClick}
+                aria-label={secondaryButtonText}
+              >
+                {secondaryButtonText}
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>

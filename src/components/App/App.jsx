@@ -61,6 +61,9 @@ function App() {
   const handleOpenRegisterModal = () => setActiveModal("register");
   const handleOpenEditProfileModal = () => setActiveModal("edit-profile");
 
+  const handleSwitchToRegister = () => setActiveModal("register");
+  const handleSwitchToLogin = () => setActiveModal("login");
+
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setActiveModal("preview");
@@ -325,11 +328,13 @@ function App() {
             activeModal={activeModal}
             onClose={handleCloseModal}
             onLogin={handleLogin}
+            onSwitchToRegister={handleSwitchToRegister}
           />
           <RegisterModal
             activeModal={activeModal}
             onClose={handleCloseModal}
             onRegister={handleRegister}
+            onSwitchToLogin={handleSwitchToLogin}
           />
           <EditProfileModal
             activeModal={activeModal}
