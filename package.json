@@ -3,13 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://wtwr.abrasantia.com.ar",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "deploy": "npm run build && scp -r ./dist/* havrenwright@34.173.198.242:~/frontend/"
   },
   "dependencies": {
     "react": "^18.3.1",
