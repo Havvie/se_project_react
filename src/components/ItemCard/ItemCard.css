@@ -50,7 +50,9 @@
   display: block;
   border-radius: 19px;
   border: 1px;
-  background-color: #000000;
+  background-color: #fff;
+  position: relative;
+  z-index: 0;
 }
 
 .cards__text {
@@ -68,12 +70,16 @@
   width: 18px;
   height: 15px;
   border: none;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.8);
   background-image: url("../../assets/heart-default.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  padding: 0;
+  z-index: 2;
+
 }
 
 .card__like-button:hover {
